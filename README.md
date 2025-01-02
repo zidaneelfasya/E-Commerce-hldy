@@ -38,8 +38,13 @@ cp .env.example .env
 ```shell
 php artisan migrate:fresh --seed
 ```
+### 5. generate key
 
-### 5. Run the application
+```shell
+php artisan key:generate
+```
+
+### 6. Run the application
 
 ```shell
 npm run dev
