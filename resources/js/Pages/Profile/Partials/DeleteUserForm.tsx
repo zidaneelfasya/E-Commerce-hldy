@@ -1,9 +1,9 @@
-import DangerButton from "@/Components-template/DangerButton";
-import InputError from "@/Components-template/InputError";
-import InputLabel from "@/Components-template/InputLabel";
-import Modal from "@/Components-template/Modal";
-import SecondaryButton from "@/Components-template/SecondaryButton";
-import TextInput from "@/Components-template/TextInput";
+import DangerButton from "@/Components-breeze/DangerButton";
+import InputError from "@/Components-breeze/InputError";
+import InputLabel from "@/Components-breeze/InputLabel";
+import Modal from "@/Components-breeze/Modal";
+import SecondaryButton from "@/Components-breeze/SecondaryButton";
+import TextInput from "@/Components-breeze/TextInput";
 import { useForm } from "@inertiajs/react";
 import { FormEventHandler, useRef, useState } from "react";
 
