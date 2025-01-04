@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/sidebar";
 import { User } from "@/types";
 import { cn } from "@/lib/utils";
+import LogoutAlert from "./logout-alert";
+import { useState } from "react";
 
 type Props = {
     user: User;
@@ -36,6 +38,7 @@ type Props = {
 
 export function NavUser({ user, isNavbar, btnClassName }: Props) {
     const { isMobile } = useSidebar();
+    const [showLogoutAlert, setShowLogoutAlert] = useState(false);
 
     return (
         <SidebarMenu>
@@ -123,13 +126,19 @@ export function NavUser({ user, isNavbar, btnClassName }: Props) {
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <LogOut />
-                            Log out
+                        <DropdownMenuItem
+                            onClick={() => setShowLogoutAlert(true)}
+                        >
+                            <LogOut></LogOut>
+                            Log Out
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </SidebarMenuItem>
+            <LogoutAlert
+                open={showLogoutAlert}
+                onOpenChange={setShowLogoutAlert}
+            />
         </SidebarMenu>
     );
 }
