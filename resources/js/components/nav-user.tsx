@@ -7,6 +7,7 @@ import {
     CreditCard,
     LogOut,
     Sparkles,
+    UserRound,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -29,6 +30,7 @@ import { User } from "@/types";
 import { cn } from "@/lib/utils";
 import LogoutAlert from "./logout-alert";
 import { useState } from "react";
+import { router } from "@inertiajs/react";
 
 type Props = {
     user: User;
@@ -105,21 +107,15 @@ export function NavUser({ user, isNavbar, btnClassName }: Props) {
                             </>
                         )}
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <Sparkles />
-                                Upgrade to Pro
+                            <DropdownMenuItem
+                                onClick={() => router.get("/profile")}
+                            >
+                                <UserRound />
+                                Profile
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <BadgeCheck />
-                                Account
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <CreditCard />
-                                Billing
-                            </DropdownMenuItem>
                             <DropdownMenuItem>
                                 <Bell />
                                 Notifications
