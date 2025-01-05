@@ -64,7 +64,6 @@ const Dashboard = () => {
 
             <div className="mt-5 grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <Chart />
-
                 <Card>
                     <CardHeader>
                         <CardTitle>Recent Salels</CardTitle>
