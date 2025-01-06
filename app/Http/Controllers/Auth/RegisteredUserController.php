@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Faker\Factory as Faker;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -30,6 +31,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $faker = Faker::create();
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
@@ -40,6 +43,14 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'address' => ('ayam'),
+            'birth_date' => $faker->date(),
+            'role_id' => (1),
+
+            
+            
+
+
         ]);
 
         event(new Registered($user));
