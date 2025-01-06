@@ -20,7 +20,7 @@ const ProductContent: React.FC = () => {
         price: 159500,
         originalPrice: 455000,
         discount: 64,
-        description: `JINISO Overload Shirt Untuk Segala Aktivitasmu! Genderless! Bisa dipakai cewe dan cowo lho. Oversized Kemeja Denim dari JINISO untuk kamu yang HyperActive.`,
+        description: `JINISO Overload Shirt Untuk Segala Aktivitasmu! Genderless! Bisa dipakai cewe dan cowo lho. Oversized Kemeja Denim dari JINISO untuk kamu yang HyperActive. dari coupelan sampai tuker2an sama temen/pacar bebas deh karena emang sekeren itu! Gak usah ribet mau pake outfit apa, tinggal grab ...MORE`,
         colors: ["#C2D4D8", "#D8CBC2", "#E8E8E8", "#000000", "#C7B4DE"],
         sizes: ["S", "M", "L", "XL"],
         images: [
