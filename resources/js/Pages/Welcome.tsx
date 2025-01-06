@@ -29,7 +29,7 @@ const Welcome = () => {
             {/* Header */}
             <header className="bg-purple-800 text-white py-4 fixed top-0 w-full z-10">
                 <div className="container mx-auto flex justify-between items-center">
-                    <div className="text-lg font-bold">E-Commerce</div>
+                    <div className="text-lg font-bold">hldy</div>
                     <nav className="flex space-x-4">
                         <a href="#" className="hover:underline">
                             Home
@@ -74,7 +74,7 @@ const Welcome = () => {
                     </div>
                 </div>
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-                    Welcome To ZidunMerce
+                    Welcome To hldy
                 </h1>
                 <p className="text-lg mt-2">Discover the best products here</p>
             </section>
