@@ -23,7 +23,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::get('/produk/1', function () {
+    return Inertia::render('Product');
+});
+Route::get('/produk/2', function () {
+    return Inertia::render('ProductPage');
+});
 
 
 require __DIR__.'/auth.php';
