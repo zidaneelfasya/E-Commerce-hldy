@@ -11,7 +11,6 @@ import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import { ShoppingCart } from "lucide-react";
 
-
 interface ProductCardProps {
     image: string;
     name: string;
