@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 10, 2);
-            $table->string('location');
-            $table->text('description');
+            $table->decimal('disc_price', 10, 2)->nullable();
+            $table->text('description')->nullable();
             $table->integer('stock');
+            $table->enum('condition', ['ready', 'habis', 'pre-order'])->default('ready');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('user_id')->constrained('users'); // Relasi dengan users
+            $table->softDeletes();
             $table->timestamps();
         });
     }
