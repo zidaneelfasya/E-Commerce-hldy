@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -18,8 +19,8 @@ Route::get('/', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+Route::get('/admin', function () {
+    return Inertia::render('admin/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -27,12 +28,20 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/produk/1', function () {
+Route::get('/product/1', function () {
     return Inertia::render('Product');
 });
-Route::get('/produk/2', function () {
+Route::get('/product/2', function () {
     return Inertia::render('ProductPage');
 });
+
+Route::get('/admin/item', function () {
+    return Inertia::render('admin/Item');
+});
+
+// Route::apiResource('items', ItemController::class);
+Route::get('/api/items', [ItemController::class, 'index']);
+
 
 
 require __DIR__.'/auth.php';

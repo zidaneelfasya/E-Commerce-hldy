@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('stock');
             $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('user_id')->constrained('users'); // Relasi dengan users
             $table->timestamps();
         });
     }

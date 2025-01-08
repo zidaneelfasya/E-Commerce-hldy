@@ -25,12 +25,12 @@
 
 import Chart from "@/components/chart";
 import DatePicker from "@/components/date-picker";
-import Layout from "@/components/Layout";
 import RecentSales from "@/components/recent-sales";
 import SummaryCard from "@/components/summary-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Activity, CreditCard, DollarSign, Filter, Users } from "lucide-react";
+import AdminLayout from "@/components/AdminLayout";
 
 const summaryData = [
     { title: "Total Revenue", icon: DollarSign, value: "$45,231.89" },
@@ -41,7 +41,7 @@ const summaryData = [
 
 const Dashboard = () => {
     return (
-        <Layout>
+        <AdminLayout>
             <div className="flex items-end justify-between mb-7">
                 <h1 className="text-3xl font-bold">Dashboard</h1>
                 <div className="flex items-center gap-2">
@@ -76,7 +76,7 @@ const Dashboard = () => {
                     </CardContent>
                 </Card>
             </div>
-        </Layout>
+        </AdminLayout>
     );
 };
 

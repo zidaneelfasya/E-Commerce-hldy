@@ -22,8 +22,9 @@ class ItemsSeeder extends Seeder
                 'description' => $faker->paragraph,
                 'stock' => $faker->numberBetween(1, 100),
                 'category_id' => $faker->numberBetween(1, 3),
+                'user_id' => 3,
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
             ]);
         }
     }
