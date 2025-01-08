@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
 
@@ -21,26 +22,45 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        // return Inertia::render('Items/Create', [
+        //     'categories' => Category::all(),
+        // ]);
+        $categories = Category::all();
+        return inertia('Item/Create', compact('categories'));
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
+    // app/Http/Controllers/ItemController.php
+
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'location' => 'required|string|max:255',
-            'description' => 'required|string',
-            'stock' => 'required|integer',
-            'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id', // Validasi user_id
+        $request->validate([
+            'name' => '',
+            'price' => '',
+            'disc_price' => '', // Mengizinkan nilai null
+            'location' => '',
+            'description' => '',
+            'stock' => '',
+            'condition' => '',
+            'category_id' => '',
         ]);
 
-        $item = Item::create($validatedData);
-        return response()->json(['message' => 'Item created successfully!', 'data' => $item], 201);
+        Item::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'disc_price' => $request->disc_price, // Dapat bernilai null
+            'location' => $request->location,
+            'description' => $request->description,
+            'stock' => $request->stock,
+            'condition' => $request->condition,
+            'category_id' => $request->category_id,
+            'user_id' => auth()->id(),
+        ]);
+
+        return redirect()->route('items.create')->with('success', 'Item berhasil ditambahkan!');
     }
 
     /**
@@ -60,7 +80,8 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::find($id);
+        return inertia('Item/Edit', compact('item'));
     }
 
     /**
@@ -91,12 +112,19 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        $item = Item::find($id);
-        if (!$item) {
-            return response()->json(['message' => 'Item not found'], 404);
+        try {
+            $item = Item::findOrFail($id);
+            $item->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Item deleted successfully',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete item',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-
-        $item->delete();
-        return response()->json(['message' => 'Item deleted successfully!']);
     }
 }
