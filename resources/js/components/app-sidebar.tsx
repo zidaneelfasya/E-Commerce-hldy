@@ -7,6 +7,7 @@ import {
     Frame,
     GalleryVerticalEnd,
     Map,
+    PackageSearch,
     PieChart,
     Settings2,
     SquareTerminal,
@@ -136,6 +137,23 @@ const data = {
                 },
             ],
         },
+        {
+            title: "Item",
+            url: "/admin/items",
+            icon: PackageSearch,
+            items: [
+                {
+                    title: "list item",
+                    url: "/admin/items",
+                },
+                
+                {
+                    title: "create",
+                    url: "/admin/items/create",
+                },
+                
+            ],
+        },
     ],
     projects: [
         {
@@ -153,6 +171,12 @@ const data = {
             url: "#",
             icon: Map,
         },
+        {
+            name: "Item-product",
+            url: "/admin/item",
+            icon: Map,
+        },
+        
     ],
 };
 
