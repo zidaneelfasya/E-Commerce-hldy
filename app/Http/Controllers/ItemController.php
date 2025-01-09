@@ -49,7 +49,7 @@ class ItemController extends Controller
         Item::create([
             'name' => $request->name,
             'price' => $request->price,
-            'disc_price' => $request->disc_price, // Dapat bernilai null
+            'disc_price' => $request->disc_price, 
             'description' => $request->description,
             'stock' => $request->stock,
             'condition' => $request->condition,
