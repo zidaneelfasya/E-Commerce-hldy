@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-// Definisikan tipe data untuk item
 type Item = {
     id: number;
     name: string;
@@ -22,12 +21,12 @@ const Index = () => {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const { data } = await axios.get<Item[]>("/api/items"); // Ambil data dengan tipe
-                setItems(data); // Simpan data ke state
+                const { data } = await axios.get<Item[]>("/api/items");
+                setItems(data);
             } catch (error) {
                 console.error("Error fetching items:", error);
             } finally {
-                setLoading(false); // Selesai loading
+                setLoading(false);
             }
         };
 
@@ -47,23 +46,12 @@ const Index = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    
-                    await axios.delete(route("items.destroy", id));
-                    setItems((prevItems) =>
-                        prevItems.filter((item) => item.id !== id)
-                    ); // Hapus dari state
-                    Swal.fire(
-                        "Deleted!",
-                        "The item has been deleted.",
-                        "success"
-                    );
+                    await axios.delete(`/api/items/${id}`);
+                    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+                    Swal.fire("Deleted!", "The item has been deleted.", "success");
                 } catch (error) {
                     console.error("Error deleting item:", error);
-                    Swal.fire(
-                        "Error!",
-                        "There was an issue deleting the item.",
-                        "error"
-                    );
+                    Swal.fire("Error!", "There was an issue deleting the item.", "error");
                 }
             }
         });
@@ -78,7 +66,6 @@ const Index = () => {
             }
         >
             <Head title="Item" />
-
             <div className="py-6">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -88,9 +75,7 @@ const Index = () => {
                             </h3>
                             <div className="overflow-x-auto">
                                 {loading ? (
-                                    <div className="text-center">
-                                        Loading...
-                                    </div>
+                                    <div className="text-center">Loading...</div>
                                 ) : (
                                     <table className="min-w-full divide-y divide-gray-300 bg-white rounded-lg shadow table-auto">
                                         <thead className="bg-gray-100">
@@ -124,10 +109,7 @@ const Index = () => {
                                         <tbody className="bg-white divide-y divide-gray-200">
                                             {items.length > 0 ? (
                                                 items.map((item, index) => (
-                                                    <tr
-                                                        key={item.id}
-                                                        className="hover:bg-gray-50"
-                                                    >
+                                                    <tr key={item.id} className="hover:bg-gray-50">
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm">
                                                             {index + 1}
                                                         </td>
@@ -144,26 +126,20 @@ const Index = () => {
                                                             {item.stock}
                                                         </td>
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm">
-                                                            {item.category
-                                                                ?.name || "N/A"}
+                                                            {item.category?.name || "N/A"}
                                                         </td>
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm">
-                                                            {item.user?.name ||
-                                                                "N/A"}
+                                                            {item.user?.name || "N/A"}
                                                         </td>
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm flex space-x-2">
                                                             <Link
-                                                                href={route("items.edit", item.id)}
+                                                                href={`/items/${item.id}/edit`}
                                                                 className="border border-green-600 text-green-600 px-4 py-2 rounded-lg shadow transition-colors duration-300 ease-in-out hover:bg-green-600 hover:text-white text-sm"
                                                             >
                                                                 Edit
                                                             </Link>
                                                             <button
-                                                                onClick={() =>
-                                                                    handleDelete(
-                                                                        item.id
-                                                                    )
-                                                                }
+                                                                onClick={() => handleDelete(item.id)}
                                                                 className="border border-red-600 text-red-600 px-4 py-2 rounded-lg shadow transition-colors duration-300 ease-in-out hover:bg-red-600 hover:text-white text-sm"
                                                             >
                                                                 Delete
@@ -175,7 +151,7 @@ const Index = () => {
                                                 <tr>
                                                     <td
                                                         className="px-4 py-2 text-center text-sm"
-                                                        colSpan={7}
+                                                        colSpan={8}
                                                     >
                                                         No items found.
                                                     </td>

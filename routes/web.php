@@ -43,7 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('api/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 
 });
-Route::post('api/items', [ItemController::class, 'store'])->name('items.store');
 
 Route::get('api/get-csrf-token', function () {
     return response()->json([
