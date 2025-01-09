@@ -4,19 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
         'price',
+        'disc_price', // Tambahkan ini
         'location',
+        'title',
         'description',
         'stock',
+        'condition',
         'category_id',
-        'user_id', 
+        'user_id',
     ];
 
     // Relasi ke kategori

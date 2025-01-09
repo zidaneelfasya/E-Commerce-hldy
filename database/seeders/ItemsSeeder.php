@@ -18,7 +18,6 @@ class ItemsSeeder extends Seeder
             \DB::table('items')->insert([
                 'name' => $faker->word,
                 'price' => $faker->randomFloat(2, 10, 1000),
-                'location' => $faker->city,
                 'description' => $faker->paragraph,
                 'stock' => $faker->numberBetween(1, 100),
                 'category_id' => $faker->numberBetween(1, 3),
