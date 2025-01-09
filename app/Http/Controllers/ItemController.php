@@ -38,21 +38,18 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => '',
-            'price' => '',
-            'disc_price' => '', // Mengizinkan nilai null
-            'location' => '',
-            'description' => '',
-            'stock' => '',
-            'condition' => '',
-            'category_id' => '',
+            'name' => 'required|string',
+            'price' => 'required|numeric',
+            'disc_price' => 'nullable|numeric',
+            'description' => 'required|string',
+            'stock' => 'required|integer',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         Item::create([
             'name' => $request->name,
             'price' => $request->price,
             'disc_price' => $request->disc_price, // Dapat bernilai null
-            'location' => $request->location,
             'description' => $request->description,
             'stock' => $request->stock,
             'condition' => $request->condition,
@@ -60,7 +57,7 @@ class ItemController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return redirect()->route('items.create')->with('success', 'Item berhasil ditambahkan!');
+        return redirect()->route('items.index')->with('success', 'Item berhasil ditambahkan!');
     }
 
     /**
