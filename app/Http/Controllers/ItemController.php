@@ -26,7 +26,7 @@ class ItemController extends Controller
         //     'categories' => Category::all(),
         // ]);
         $categories = Category::all();
-        return inertia('Item/Create', compact('categories'));
+        return inertia('Admin/Item/Create', compact('categories'));
 
     }
 
@@ -57,7 +57,7 @@ class ItemController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return redirect()->route('items.index')->with('success', 'Item berhasil ditambahkan!');
+        return redirect('/admin/items')->with('success', 'Item berhasil ditambahkan!');
     }
 
     /**
