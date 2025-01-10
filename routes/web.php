@@ -20,7 +20,7 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin', function () {
-    return Inertia::render('admin/Dashboard');
+    return Inertia::render('Admin/Dashboard');
 
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -31,10 +31,10 @@ Route::middleware('auth')->group(function () {
 
     //Item
     Route::get('/admin/items', function () {
-        return Inertia::render('Item/Index');
+        return Inertia::render('Admin/Item/Index');
     });
     // Route::apiResource('items', ItemController::class);
-    Route::get('/api/items', [ItemController::class, 'index'])->name('items.index');
+    Route::get('/api/get/items', [ItemController::class, 'index'])->name('items.index');
     Route::get('admin/items/create', [ItemController::class, 'create'])->name('items.create');
     Route::post('api/items', [ItemController::class, 'store'])->name('items.store');
     Route::get('admin/items/{id}', [ItemController::class, 'details'])->name('items.details');
