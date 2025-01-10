@@ -15,7 +15,7 @@ interface User {
 
 interface CreateProps {
     categories: Category[];
-    users: User[]; // Tambahkan props untuk daftar pengguna
+    users: User[]; 
 }
 
 const Create: React.FC<CreateProps> = ({ categories, users }) => {
@@ -62,12 +62,11 @@ const Create: React.FC<CreateProps> = ({ categories, users }) => {
                 confirmButtonText: "OK",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/admin/items"; // Ganti dengan route menuju halaman indeks Anda
+                    window.location.href = "/admin/items"; 
                 }
             });
         } catch (error: any) {
             if (error.response?.status === 422) {
-                // Tangani error validasi dari server
                 setErrors(error.response.data.errors || {});
             } else {
                 console.error("Terjadi kesalahan:", error);
@@ -86,6 +85,14 @@ const Create: React.FC<CreateProps> = ({ categories, users }) => {
             ...prevData,
             [key]: value,
         }));
+    };
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            setData((prevData) => ({
+                ...prevData,
+                image: e.target.files[0],
+            }));
+        }
     };
 
     return (
@@ -219,6 +226,24 @@ const Create: React.FC<CreateProps> = ({ categories, users }) => {
                                     {errors.location && (
                                         <div className="text-red-500 text-xs mt-1">
                                             {errors.stock}
+                                        </div>
+                                    )}
+
+                                </div>
+                                {/* Upload Gambar */}
+                                <div className="mb-4">
+                                    <label className="block text-sm font-medium text-gray-700">
+                                        Gambar Item
+                                    </label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="mt-1 block w-full border bg-white border-gray-300 rounded-lg shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                        onChange={handleFileChange}
+                                    />
+                                    {errors.image && (
+                                        <div className="text-red-500 text-xs mt-1">
+                                            {errors.image}
                                         </div>
                                     )}
                                 </div>

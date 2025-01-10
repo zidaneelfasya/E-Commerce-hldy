@@ -21,7 +21,7 @@ const Index = () => {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const { data } = await axios.get<Item[]>("/api/items");
+                const { data } = await axios.get<Item[]>("/api/get/items");
                 setItems(data);
             } catch (error) {
                 console.error("Error fetching items:", error);
