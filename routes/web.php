@@ -33,16 +33,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/items', function () {
         return Inertia::render('Admin/Item/Index');
     });
+    Route::get('/admin/items/details/{id}', function () {
+        return Inertia::render('Admin/Item/Detail');
+    });
     // Route::apiResource('items', ItemController::class);
     Route::get('/api/get/items', [ItemController::class, 'index'])->name('items.index');
     Route::get('admin/items/create', [ItemController::class, 'create'])->name('items.create');
     Route::post('api/items', [ItemController::class, 'store'])->name('items.store');
-    Route::get('admin/items/{id}', [ItemController::class, 'details'])->name('items.details');
     Route::get('admin/items/{id}/edit', [ItemController::class, 'edit'])->name('items.edit');
     Route::put('api/items/{id}', [ItemController::class, 'update'])->name('items.update');
     Route::delete('api/items/{id}', [ItemController::class, 'destroy'])->name('items.destroy');
 
 });
+Route::get('/api/items/details/get/{id}', [ItemController::class, 'show'])->name('items.show');
+
 
 Route::get('api/get-csrf-token', function () {
     return response()->json([
