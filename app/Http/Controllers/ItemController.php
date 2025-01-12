@@ -64,7 +64,7 @@ class ItemController extends Controller
                 $item->images()->create(['image_path' => $path]);
             }
         
-
+        }
         return redirect('/admin/items')->with('success', 'Item berhasil ditambahkan!');
     }
 
