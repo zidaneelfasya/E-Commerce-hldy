@@ -47,11 +47,21 @@ const Index = () => {
             if (result.isConfirmed) {
                 try {
                     await axios.delete(`/api/items/${id}`);
-                    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-                    Swal.fire("Deleted!", "The item has been deleted.", "success");
+                    setItems((prevItems) =>
+                        prevItems.filter((item) => item.id !== id)
+                    );
+                    Swal.fire(
+                        "Deleted!",
+                        "The item has been deleted.",
+                        "success"
+                    );
                 } catch (error) {
                     console.error("Error deleting item:", error);
-                    Swal.fire("Error!", "There was an issue deleting the item.", "error");
+                    Swal.fire(
+                        "Error!",
+                        "There was an issue deleting the item.",
+                        "error"
+                    );
                 }
             }
         });
@@ -75,7 +85,9 @@ const Index = () => {
                             </h3>
                             <div className="overflow-x-auto">
                                 {loading ? (
-                                    <div className="text-center">Loading...</div>
+                                    <div className="text-center">
+                                        Loading...
+                                    </div>
                                 ) : (
                                     <table className="min-w-full divide-y divide-gray-300 bg-white rounded-lg shadow table-auto">
                                         <thead className="bg-gray-100">
@@ -109,7 +121,10 @@ const Index = () => {
                                         <tbody className="bg-white divide-y divide-gray-200">
                                             {items.length > 0 ? (
                                                 items.map((item, index) => (
-                                                    <tr key={item.id} className="hover:bg-gray-50">
+                                                    <tr
+                                                        key={item.id}
+                                                        className="hover:bg-gray-50"
+                                                    >
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm">
                                                             {index + 1}
                                                         </td>
@@ -126,12 +141,20 @@ const Index = () => {
                                                             {item.stock}
                                                         </td>
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm">
-                                                            {item.category?.name || "N/A"}
+                                                            {item.category
+                                                                ?.name || "N/A"}
                                                         </td>
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm">
-                                                            {item.user?.name || "N/A"}
+                                                            {item.user?.name ||
+                                                                "N/A"}
                                                         </td>
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm flex space-x-2">
+                                                            <Link
+                                                                href={`/admin/items/details/${item.id}`}
+                                                                className="border border-blue-600 text-blue-600 px-4 py-2 rounded-lg shadow transition-colors duration-300 ease-in-out hover:bg-blue-600 hover:text-white text-sm"
+                                                            >
+                                                                Detail
+                                                            </Link>
                                                             <Link
                                                                 href={`/items/${item.id}/edit`}
                                                                 className="border border-green-600 text-green-600 px-4 py-2 rounded-lg shadow transition-colors duration-300 ease-in-out hover:bg-green-600 hover:text-white text-sm"
@@ -139,7 +162,11 @@ const Index = () => {
                                                                 Edit
                                                             </Link>
                                                             <button
-                                                                onClick={() => handleDelete(item.id)}
+                                                                onClick={() =>
+                                                                    handleDelete(
+                                                                        item.id
+                                                                    )
+                                                                }
                                                                 className="border border-red-600 text-red-600 px-4 py-2 rounded-lg shadow transition-colors duration-300 ease-in-out hover:bg-red-600 hover:text-white text-sm"
                                                             >
                                                                 Delete
