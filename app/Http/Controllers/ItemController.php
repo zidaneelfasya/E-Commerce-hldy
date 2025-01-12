@@ -44,12 +44,13 @@ class ItemController extends Controller
             'description' => 'required|string',
             'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
+            
         ]);
 
-        Item::create([
+        $item = Item::create([
             'name' => $request->name,
             'price' => $request->price,
-            'disc_price' => $request->disc_price, 
+            'disc_price' => $request->disc_price,
             'description' => $request->description,
             'stock' => $request->stock,
             'condition' => $request->condition,
@@ -57,6 +58,13 @@ class ItemController extends Controller
             'user_id' => auth()->id(),
         ]);
 
+        if ($request->has('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('items', 'public'); // Simpan di storage public/items
+                $item->images()->create(['image_path' => $path]);
+            }
+        
+        }
         return redirect('/admin/items')->with('success', 'Item berhasil ditambahkan!');
     }
 
@@ -65,11 +73,9 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        $item = Item::with('category')->find($id);
-        if (!$item) {
-            return response()->json(['message' => 'Item not found'], 404);
-        }
+        $item = Item::with(['category', 'user', 'images'])->findOrFail($id);
         return response()->json($item);
+
     }
 
     /**

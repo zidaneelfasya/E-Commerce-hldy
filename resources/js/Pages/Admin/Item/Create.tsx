@@ -15,10 +15,10 @@ interface User {
 
 interface CreateProps {
     categories: Category[];
-    users: User[]; 
+    users: User[];
 }
 
-const Create: React.FC<CreateProps> = ({ categories, users }) => {
+const Create: React.FC<CreateProps> = ({ categories }) => {
     const [data, setData] = useState({
         name: "",
         price: "",
@@ -27,6 +27,7 @@ const Create: React.FC<CreateProps> = ({ categories, users }) => {
         stock: "",
         condition: "ready",
         category_id: "",
+        images: [] as File[], // Menggunakan array untuk menyimpan beberapa file gambar
     });
 
     const [errors, setErrors] = useState<Record<string, string>>({});
@@ -35,26 +36,31 @@ const Create: React.FC<CreateProps> = ({ categories, users }) => {
         e.preventDefault();
 
         try {
-            // Reset errors
             setErrors({});
-            const token = document
-                .querySelector('meta[name="csrf-token"]')
-                ?.getAttribute("content");
 
-            // Lakukan POST request ke API
+            const formData = new FormData();
+            formData.append("name", data.name);
+            formData.append("price", data.price);
+            formData.append("disc_price", data.disc_price || "");
+            formData.append("description", data.description);
+            formData.append("stock", data.stock);
+            formData.append("condition", data.condition);
+            formData.append("category_id", data.category_id);
+
+            data.images.forEach((image, index) => {
+                formData.append(`images[${index}]`, image);
+            });
+
             const response = await axios.post(
                 "http://127.0.0.1:8000/api/items",
-                data,
+                formData,
                 {
                     headers: {
-                        "Content-Type": "application/json",
+                        "Content-Type": "multipart/form-data",
                     },
                 }
             );
 
-            console.log("Item berhasil disimpan:", response.data);
-
-            // Tampilkan SweetAlert jika berhasil
             Swal.fire({
                 title: "Berhasil!",
                 text: "Item berhasil disimpan.",
@@ -62,14 +68,13 @@ const Create: React.FC<CreateProps> = ({ categories, users }) => {
                 confirmButtonText: "OK",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/admin/items"; 
+                    window.location.href = "/admin/items";
                 }
             });
         } catch (error: any) {
             if (error.response?.status === 422) {
                 setErrors(error.response.data.errors || {});
             } else {
-                console.error("Terjadi kesalahan:", error);
                 Swal.fire({
                     title: "Gagal!",
                     text: "Gagal menyimpan item.",
@@ -86,13 +91,22 @@ const Create: React.FC<CreateProps> = ({ categories, users }) => {
             [key]: value,
         }));
     };
+
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
+            const files = Array.from(e.target.files);
             setData((prevData) => ({
                 ...prevData,
-                image: e.target.files[0],
+                images: [...prevData.images, ...files],
             }));
         }
+    };
+
+    const handleRemoveImage = (index: number) => {
+        setData((prevData) => ({
+            ...prevData,
+            images: prevData.images.filter((_, i) => i !== index),
+        }));
     };
 
     return (
@@ -228,9 +242,9 @@ const Create: React.FC<CreateProps> = ({ categories, users }) => {
                                             {errors.stock}
                                         </div>
                                     )}
-
                                 </div>
                                 {/* Upload Gambar */}
+                                {/* Gambar Item */}
                                 <div className="mb-4">
                                     <label className="block text-sm font-medium text-gray-700">
                                         Gambar Item
@@ -238,12 +252,38 @@ const Create: React.FC<CreateProps> = ({ categories, users }) => {
                                     <input
                                         type="file"
                                         accept="image/*"
+                                        multiple
                                         className="mt-1 block w-full border bg-white border-gray-300 rounded-lg shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                                         onChange={handleFileChange}
                                     />
-                                    {errors.image && (
+                                    <div className="mt-2 flex flex-wrap gap-4">
+                                        {data.images.map((image, index) => (
+                                            <div
+                                                key={index}
+                                                className="relative"
+                                            >
+                                                <img
+                                                    src={URL.createObjectURL(
+                                                        image
+                                                    )}
+                                                    alt="Preview"
+                                                    className="w-32 h-32 object-cover rounded-md"
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        handleRemoveImage(index)
+                                                    }
+                                                    className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                                                >
+                                                    &times;
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    {errors.images && (
                                         <div className="text-red-500 text-xs mt-1">
-                                            {errors.image}
+                                            {errors.images}
                                         </div>
                                     )}
                                 </div>
