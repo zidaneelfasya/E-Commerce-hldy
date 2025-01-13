@@ -44,7 +44,8 @@ class ItemController extends Controller
             'description' => 'required|string',
             'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
-            
+            'images.*' => 'nullable',
+
         ]);
 
         $item = Item::create([
@@ -58,14 +59,19 @@ class ItemController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        if ($request->has('images')) {
+        if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $path = $image->store('items', 'public'); // Simpan di storage public/items
-                $item->images()->create(['image_path' => $path]);
+                $path = $image->store('uploads/items', 'public');
+                $item->images()->create([
+                    'path' => $path,
+                ]);
             }
-        
         }
-        return redirect('/admin/items')->with('success', 'Item berhasil ditambahkan!');
+
+        return response()->json([
+            'message' => 'Item berhasil disimpan.',
+            'item' => $item,
+        ], 201);
     }
 
     /**
