@@ -2,6 +2,7 @@ import AdminLayout from "@/components/AdminLayout";
 import { Head, Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 type ItemDetail = {
     id: number;
@@ -14,24 +15,27 @@ type ItemDetail = {
     images: { image_path: string }[]; // List of image URLs
 };
 
-const Detail = ({ id }: { id: number }) => {
+const Detail = () => {
+    const { id } = useParams(); // Ambil id dari URL
+    const a = id
     const [item, setItem] = useState<ItemDetail | null>(null);
     const [thumbnail, setThumbnail] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchItemDetail = async () => {
             try {
+                console.log("Fetching details for ID:", id);
                 const { data } = await axios.get<ItemDetail>(
-                    `/api/items/details/get/${id}`
+                    `/api/items/details/get/${a}`
                 );
                 setItem(data);
-                setThumbnail(data.images[0]?.image_path || null); // Gunakan image_path
+                setThumbnail(data.images[0]?.image_path || null);
             } catch (error) {
                 console.error("Error fetching item detail:", error);
             }
         };
 
-        fetchItemDetail();
+        if (id) fetchItemDetail(); // Pastikan id ada sebelum fetch
     }, [id]);
 
     const handleThumbnailClick = (image: string) => {
@@ -72,7 +76,9 @@ const Detail = ({ id }: { id: number }) => {
                                             alt={`Image ${index + 1}`}
                                             className="w-20 h-20 rounded-lg cursor-pointer border-2 border-gray-200 hover:border-blue-500"
                                             onClick={() =>
-                                                handleThumbnailClick(image.image_path)
+                                                handleThumbnailClick(
+                                                    image.image_path
+                                                )
                                             }
                                         />
                                     ))}
