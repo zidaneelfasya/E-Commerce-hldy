@@ -33,8 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/items', function () {
         return Inertia::render('Admin/Item/Index');
     });
-    Route::get('/admin/items/details/{id}', function () {
-        return Inertia::render('Admin/Item/Detail');
+    Route::get('/admin/items/details/{id}', function ($id) {
+        return Inertia::render('Admin/Item/Detail', ['id' => $id]);
     });
     // Route::apiResource('items', ItemController::class);
     Route::get('/api/get/items', [ItemController::class, 'index'])->name('items.index');

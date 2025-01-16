@@ -2,6 +2,7 @@ import React from "react";
 import ProductContent from "@/components/ProductContent";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ProductOther from "@/components/Product/ProductOther";
 
 const ProductPage: React.FC = () => {
     return (
@@ -9,6 +10,10 @@ const ProductPage: React.FC = () => {
             <Header />
             <main className="pt-16">
                 <ProductContent />
+                <div className="ml-96">
+                    <h2 className="ml-56 font-extrabold text-lg ">Other Product</h2>
+                </div>
+                <ProductOther />
             </main>
             <Footer />
         </div>

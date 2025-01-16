@@ -2,7 +2,6 @@ import AdminLayout from "@/components/AdminLayout";
 import { Head, Link } from "@inertiajs/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 type ItemDetail = {
     id: number;
@@ -15,18 +14,16 @@ type ItemDetail = {
     images: { image_path: string }[]; // List of image URLs
 };
 
-const Detail = () => {
-    const { id } = useParams(); // Ambil id dari URL
-    const a = id
+const Detail = ({ id }: { id: number }) => {
+    console.log(id);
     const [item, setItem] = useState<ItemDetail | null>(null);
     const [thumbnail, setThumbnail] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchItemDetail = async () => {
             try {
-                console.log("Fetching details for ID:", id);
                 const { data } = await axios.get<ItemDetail>(
-                    `/api/items/details/get/${a}`
+                    `/api/items/details/get/${id}`
                 );
                 setItem(data);
                 setThumbnail(data.images[0]?.image_path || null);
@@ -35,7 +32,7 @@ const Detail = () => {
             }
         };
 
-        if (id) fetchItemDetail(); // Pastikan id ada sebelum fetch
+        fetchItemDetail();
     }, [id]);
 
     const handleThumbnailClick = (image: string) => {
