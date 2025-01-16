@@ -7,7 +7,7 @@ const Footer = () => {
                 <div className="footer-top flex justify-between items-start space-x-8">
                     <div className="footer-brand flex flex-col items-start">
                         <a href="#" className="logo">
-                            <img src="logo.png" alt="logo" className="w-1/2" />
+                            <img src="logo.png" alt="logo" className="w-8" />
                         </a>
                         <p className="footer-text mt-4">
                             ZidunMerce is a platform that provides a variety of products
