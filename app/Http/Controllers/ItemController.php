@@ -79,7 +79,9 @@ class ItemController extends Controller
      */
     public function show($id)
     {
+        
         $item = Item::with(['category', 'user', 'images'])->findOrFail($id);
+        
         return response()->json($item);
     }
 
