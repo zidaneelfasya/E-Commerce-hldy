@@ -10,8 +10,8 @@ const ProductPage: React.FC = () => {
             <Header />
             <main className="pt-16">
                 <ProductContent />
-                <div className="ml-96">
-                    <h2 className="ml-56 font-extrabold text-lg ">Other Product</h2>
+                <div className="flex items-center   ">
+                    <h2 className="font-extrabold text-lg">Other Product</h2>
                 </div>
                 <ProductOther />
             </main>
