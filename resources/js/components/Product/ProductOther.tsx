@@ -34,8 +34,8 @@ const ProductOther: React.FC = () => {
     ];
 
     return (
-        <section className="text-center m-5">
-            
+        <section className="text-center m-5 flex flex-col items-center">
+            <h2 className="font-extrabold text-lg mb-4">Other Product</h2>
             <ProductList products={products} />
         </section>
     );
