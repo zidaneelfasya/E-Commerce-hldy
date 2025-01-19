@@ -9,6 +9,7 @@ interface ProductDetailsProps {
     title: string;
     price: number;
     originalPrice: number;
+    discPrice: number;
     discount: number;
     description: string;
     colors: string[];
@@ -19,6 +20,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
     title,
     price,
     originalPrice,
+    discPrice,
     discount,
     description,
     colors,
@@ -30,6 +32,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
             <ProductPrice
                 price={price}
                 originalPrice={originalPrice}
+                discPrice={discPrice}
                 discount={discount}
             />
             <ProductColors colors={colors} />
