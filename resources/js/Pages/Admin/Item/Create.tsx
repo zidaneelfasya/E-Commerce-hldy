@@ -34,10 +34,20 @@ const Create: React.FC<CreateProps> = ({ categories }) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
+    
+        // Reset errors
+        setErrors({});
+    
+        // Validasi jika gambar kosong
+        if (data.images.length === 0) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                images: "Gambar tidak boleh kosong.",
+            }));
+            return;
+        }
+    
         try {
-            setErrors({});
-
             const formData = new FormData();
             formData.append("name", data.name);
             formData.append("price", data.price);
@@ -46,11 +56,11 @@ const Create: React.FC<CreateProps> = ({ categories }) => {
             formData.append("stock", data.stock);
             formData.append("condition", data.condition);
             formData.append("category_id", data.category_id);
-
+    
             data.images.forEach((image, index) => {
                 formData.append(`images[${index}]`, image);
             });
-
+    
             const response = await axios.post(
                 "http://127.0.0.1:8000/api/items",
                 formData,
@@ -60,7 +70,7 @@ const Create: React.FC<CreateProps> = ({ categories }) => {
                     },
                 }
             );
-
+    
             Swal.fire({
                 title: "Berhasil!",
                 text: "Item berhasil disimpan.",
@@ -84,6 +94,7 @@ const Create: React.FC<CreateProps> = ({ categories }) => {
             }
         }
     };
+    
 
     const handleInputChange = (key: string, value: string | number | null) => {
         setData((prevData) => ({
