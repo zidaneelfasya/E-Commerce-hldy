@@ -14,7 +14,6 @@ class Item extends Model
         'name',
         'price',
         'disc_price', // Tambahkan ini
-        'location',
         'title',
         'description',
         'stock',
