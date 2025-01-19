@@ -44,7 +44,7 @@ class ItemController extends Controller
             'description' => 'required|string',
             'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
-            'images.*' => 'nullable',
+            'images.*' => 'required|file|image'
 
         ]);
 
