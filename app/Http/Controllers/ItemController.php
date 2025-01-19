@@ -63,7 +63,7 @@ class ItemController extends Controller
             foreach ($request->file('images') as $image) {
                 $path = $image->store('uploads/items', 'public');
                 $item->images()->create([
-                    'path' => $path,
+                    'image_path' => $path,
                 ]);
             }
         }
@@ -81,7 +81,6 @@ class ItemController extends Controller
     {
         
         $item = Item::with(['category', 'user', 'images'])->findOrFail($id);
-        
         return response()->json($item);
     }
 

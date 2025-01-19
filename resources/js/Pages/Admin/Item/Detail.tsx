@@ -15,7 +15,6 @@ type ItemDetail = {
 };
 
 const Detail = ({ id }: { id: number }) => {
-    console.log(id);
     const [item, setItem] = useState<ItemDetail | null>(null);
     const [thumbnail, setThumbnail] = useState<string | null>(null);
 
@@ -23,7 +22,7 @@ const Detail = ({ id }: { id: number }) => {
         const fetchItemDetail = async () => {
             try {
                 const { data } = await axios.get<ItemDetail>(
-                    `/api/items/details/get/${id}`
+                    `http://127.0.0.1:8000/api/items/details/get/${id}`
                 );
                 setItem(data);
                 setThumbnail(data.images[0]?.image_path || null);
