@@ -8,7 +8,7 @@ type Item = {
     id: number;
     name: string;
     price: number;
-    location: string;
+    disc_price: number;
     stock: number;
     category?: { name: string };
     user?: { name: string };
@@ -102,7 +102,7 @@ const Index = () => {
                                                     Price
                                                 </th>
                                                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                                                    Location
+                                                    Disc Price
                                                 </th>
                                                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
                                                     Stock
@@ -134,9 +134,16 @@ const Index = () => {
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm">
                                                             {item.price}
                                                         </td>
-                                                        <td className="px-4 py-2 whitespace-nowrap text-sm">
-                                                            {item.location}
+                                                        {!item.disc_price ? (
+                                                            <td className="px-4 py-2 whitespace-nowrap text-sm">
+                                                            -
                                                         </td>
+                                                        ) : (
+                                                            <td className="px-4 py-2 whitespace-nowrap text-sm">
+                                                            {item.disc_price}
+                                                        </td>
+                                                        )}
+                                                        
                                                         <td className="px-4 py-2 whitespace-nowrap text-sm">
                                                             {item.stock}
                                                         </td>
