@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ProductImagesProps {
-    images: string[];
+    images: { image_path: string }[]; // List of image URLs
     selectedImage: string;
     onSelectImage: (image: string) => void;
 }
@@ -16,14 +16,14 @@ const ProductImages: React.FC<ProductImagesProps> = ({
             {images.map((image, index) => (
                 <img
                     key={index}
-                    src={image}
+                    src={`/storage/${image.image_path}`}
                     alt={`Product image ${index + 1}`}
                     className={`w-16 h-16 cursor-pointer border-2 ${
-                        selectedImage === image
+                        selectedImage === `/storage/${image.image_path}`
                             ? "border-purple-500"
                             : "border-gray-300"
                     }`}
-                    onClick={() => onSelectImage(image)}
+                    onClick={() => onSelectImage(`/storage/${image.image_path}`)}
                 />
             ))}
         </div>
