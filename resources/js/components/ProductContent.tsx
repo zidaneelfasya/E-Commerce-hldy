@@ -33,13 +33,6 @@ const ProductContent: React.FC<ProductContentProps> = ({ product }) => {
         <div className="container mx-auto px-4 py-8">
             <div className="flex flex-col md:flex-row gap-8">
                 {/* Sidebar Images */}
-                <ProductImages
-                    images={product.images}
-                    selectedImage={selectedImage}
-                    onSelectImage={setSelectedImage}
-                />
-
-                {/* Main Product Image */}
                 <div className="flex-1">
                     <img
                         src={selectedImage}
@@ -47,7 +40,13 @@ const ProductContent: React.FC<ProductContentProps> = ({ product }) => {
                         className="w-full h-auto max-h-[750px] object-cover"
                     />
                 </div>
+                <ProductImages
+                    images={product.images}
+                    selectedImage={selectedImage}
+                    onSelectImage={setSelectedImage}
+                />
 
+                
                 {/* Product Details */}
                 <ProductDetails
                     title={product.name}
