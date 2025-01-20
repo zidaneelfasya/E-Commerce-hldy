@@ -7,13 +7,12 @@ import ProductOther from "@/components/Product/ProductOther";
 interface ProductPageProps {
     id: string;
 }
-const ProductPage: React.FC<ProductPageProps> = ({ id }) => {   
-    console.log(id)
+const ProductPage: React.FC<ProductPageProps> = ({ id }) => {
+    console.log(id);
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        
         const fetchProduct = async () => {
             try {
                 const response = await fetch(
@@ -36,7 +35,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ id }) => {
             <div>
                 <Header />
                 <main className="flex flex-col pt-16">
-                return <div>Loading...</div>;
+                    return <div>Loading...</div>;
                     <ProductOther />
                 </main>
                 <Footer />
@@ -49,7 +48,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ id }) => {
             <div>
                 <Header />
                 <main className="flex flex-col pt-16">
-                <div>Product not found.</div>;
+                    <div>Product not found.</div>;
                     <ProductOther />
                 </main>
                 <Footer />
