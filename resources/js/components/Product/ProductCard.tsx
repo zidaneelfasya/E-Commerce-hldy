@@ -14,7 +14,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     newPrice,
 }) => {
     return (
-        <div className="border-solid p-2.5 w-80 text-left">
+        <div className="border-solid p-2.5 w-80 text-left transition-opacity duration-300 ease-in-out hover:opacity-75">
             <img src={image} alt={name} className="product-image" />
             <h3 className="font-extrabold text-lg">{name}</h3>
             <div className="flex justify-between">
