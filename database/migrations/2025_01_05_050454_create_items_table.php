@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price', 10, 2);
             $table->decimal('disc_price', 10, 2)->nullable();
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->integer('stock');
             $table->enum('condition', ['ready', 'habis', 'pre-order'])->default('ready');
             $table->foreignId('category_id')->constrained('categories');
