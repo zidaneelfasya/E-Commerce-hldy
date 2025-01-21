@@ -40,18 +40,22 @@ class ItemController extends Controller
         $request->validate([
             'name' => 'required|string',
             'price' => 'required|numeric',
-            'disc_price' => 'nullable|numeric',
+            'disc_price' => 'nullable',
             'description' => 'required|string',
             'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'images.*' => 'required|file|image'
 
         ]);
-
+        $discPrice = 0;
+        if($request->disc_price){
+            $discPrice = $request->disc_price;
+        }
+        
         $item = Item::create([
             'name' => $request->name,
             'price' => $request->price,
-            'disc_price' => $request->disc_price,
+            'disc_price' => $discPrice,
             'description' => $request->description,
             'stock' => $request->stock,
             'condition' => $request->condition,
