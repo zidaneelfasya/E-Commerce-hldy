@@ -34,7 +34,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ id }) => {
         return (
             <div>
                 <Header />
-                <main className="flex flex-col pt-16">
+                <main className="flex flex-col text-2xl pt-16 items-center p-72">
                     return <div>Loading...</div>;
                     <ProductOther />
                 </main>
@@ -47,8 +47,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ id }) => {
         return (
             <div>
                 <Header />
-                <main className="flex flex-col pt-16">
-                    <div>Product not found.</div>;
+                <main className="flex flex-col text-2xl pt-24 items-center ">
+                    <div>Product not found.</div>
                     <ProductOther />
                 </main>
                 <Footer />
@@ -61,7 +61,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ id }) => {
             <Header />
             <main className="flex flex-col pt-16">
                 <ProductContent product={product} />
-                <div className="container mx-auto px-4 pb-8">
+                <div className="flex justify-start container mx-auto px-4 pb-8">
                     <h2 className="font-extrabold text-2xl">Other Product</h2>
                 </div>
                 <ProductOther />
