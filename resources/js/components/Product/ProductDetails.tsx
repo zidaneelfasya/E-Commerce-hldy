@@ -7,7 +7,7 @@ import ProductActions from "./ProductActions";
 
 interface ProductDetailsProps {
     title: string;
-    price: number;
+    
     originalPrice: number;
     discPrice: number;
     discount: number;
@@ -18,7 +18,7 @@ interface ProductDetailsProps {
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({
     title,
-    price,
+    
     originalPrice,
     discPrice,
     discount,
@@ -30,7 +30,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         <div className="flex-1">
             <h1 className="text-2xl font-bold mb-4">{title}</h1>
             <ProductPrice
-                price={price}
+                
                 originalPrice={originalPrice}
                 discPrice={discPrice}
                 discount={discount}

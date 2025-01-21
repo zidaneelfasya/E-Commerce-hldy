@@ -13,7 +13,7 @@ class Item extends Model
     protected $fillable = [
         'name',
         'price',
-        'disc_price', // Tambahkan ini
+        'disc_price',
         'title',
         'description',
         'stock',
