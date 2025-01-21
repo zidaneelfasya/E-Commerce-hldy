@@ -45,12 +45,11 @@ const ProductContent: React.FC<ProductContentProps> = ({ product }) => {
                     selectedImage={selectedImage}
                     onSelectImage={setSelectedImage}
                 />
-
                 
                 {/* Product Details */}
                 <ProductDetails
                     title={product.name}
-                    price={product.price}
+                    
                     originalPrice={product.price} 
                     discPrice={product.disc_price}
                     discount={(product.price-product.disc_price) / product.price * 100}
