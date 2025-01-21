@@ -55,7 +55,7 @@ const Detail = ({ id }: { id: number }) => {
                                 {item.name}
                             </h3>
                             <div className="flex flex-col md:flex-row">
-                                <div className="mb-4">
+                                <div className="flex-1 mr-4">
                                     {thumbnail && (
                                         <img
                                             src={`/storage/${thumbnail}`}
@@ -64,7 +64,7 @@ const Detail = ({ id }: { id: number }) => {
                                         />
                                     )}
                                 </div>
-                                <div className="flex space-x-2">
+                                <div className="flex flex-row md:flex-col gap-4">
                                     {item.images.map((image, index) => (
                                         <img
                                             key={index}
@@ -81,6 +81,9 @@ const Detail = ({ id }: { id: number }) => {
                                 </div>
 
                                 <div className="w-full md:w-1/2 px-4">
+                                    <p className="text-lg">
+                                        <strong>Id:</strong> ${item.id}
+                                    </p>
                                     <p className="text-lg">
                                         <strong>Price:</strong> ${item.price}
                                     </p>
