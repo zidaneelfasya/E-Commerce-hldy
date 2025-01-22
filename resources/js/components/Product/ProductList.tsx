@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 interface ProductListProps {
     products: {
         id: number;
-        image: string;
+        image_path: string;
         name: string;
         oldPrice: string;
         newPrice: string;
@@ -17,7 +17,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
             {products.map((product) => (
                 <ProductCard
                     key={product.id}
-                    image={product.image}
+                    image={product.image_path}
                     name={product.name}
                     oldPrice={product.oldPrice}
                     newPrice={product.newPrice}

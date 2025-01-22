@@ -1,68 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductList from "./ProductList";
 
 const ProductOther: React.FC = () => {
-    const products = [
-        {
-            id: 1,
-            image: "/storage/dummy/fotoother1.png",
-            name: "JINISO - Kemeja Denim Oversize Unisex HYPER ACTIVE",
-            oldPrice: "Rp 455.714,00",
-            newPrice: "Rp 159.500,00",
-        },
-        {
-            id: 2,
-            image: "/storage/dummy/fotoother1.png",
-            name: "JINISO - Kemeja Denim Raw Oversize Unisex HYPER ACTIVE",
-            oldPrice: "Rp 455.714,00",
-            newPrice: "Rp 159.500,00",
-        },
-        {
-            id: 3,
-            image: "/storage/dummy/fotoother1.png",
-            name: "JINISO - Kaos Oversize T-Shirt Polos",
-            oldPrice: "Rp 227.143,00",
-            newPrice: "Rp 79.900,00",
-        },
-        {
-            id: 4,
-            image: "/storage/dummy/fotoother1.png",
-            name: "JINISO - Kaos Oversize T-Shirt Classic",
-            oldPrice: "Rp 227.143,00",
-            newPrice: "Rp 79.900,00",
-        },
-        {
-            id: 5,
-            image: "/storage/dummy/fotoother1.png",
-            name: "JINISO - Kaos Oversize T-Shirt Classic",
-            oldPrice: "Rp 227.143,00",
-            newPrice: "Rp 79.900,00",
-        },
-        {
-            id: 6,
-            image: "/storage/dummy/fotoother1.png",
-            name: "JINISO - Kaos Oversize T-Shirt Classic",
-            oldPrice: "Rp 227.143,00",
-            newPrice: "Rp 79.900,00",
-        },
-        {
-            id: 7,
-            image: "/storage/dummy/fotoother1.png",
-            name: "JINISO - Kaos Oversize T-Shirt Classic",
-            oldPrice: "Rp 227.143,00",
-            newPrice: "Rp 79.900,00",
-        },
-        {
-            id: 8,
-            image: "/storage/dummy/fotoother1.png",
-            name: "JINISO - Kaos Oversize T-Shirt Classic",
-            oldPrice: "Rp 227.143,00",
-            newPrice: "Rp 79.900,00",
-        },
-    ];
-
+    const [products, setProducts] = useState([]);
     const [startIndex, setStartIndex] = useState(0);
+    const [loading, setLoading] = useState(true);
     const itemsToShow = 5;
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/api/get/items");
+                const data = await response.json();
+                setProducts(data); // Pastikan API mengembalikan array
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     const handleNext = () => {
         if (startIndex + itemsToShow < products.length) {
@@ -76,6 +35,10 @@ const ProductOther: React.FC = () => {
         }
     };
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <section className="container mx-auto text-center m-5 flex flex-col items-start">
             <div className="relative w-full overflow-hidden">
@@ -86,17 +49,14 @@ const ProductOther: React.FC = () => {
                 >
                     {"<"}
                 </button>
-                {/* Wrapper for ProductList */}
                 <div
                     className="flex transition-transform duration-500 ease-out"
                     style={{
-                        transform: `translateX(-${
-                            startIndex * (100 / itemsToShow)
-                        }%)`,
-                        width: `${(products.length / itemsToShow) * 100}%`, // Total width for products
+                        transform: `translateX(-${startIndex * (100 / itemsToShow)}%)`,
+                        width: `${(products.length / itemsToShow) * 100}%`,
                     }}
                 >
-                    <ProductList products={products} />
+                    <ProductList products={products.slice(startIndex, startIndex + itemsToShow)} />
                 </div>
                 <button
                     className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 rounded-full p-2 z-10"
