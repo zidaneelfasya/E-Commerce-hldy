@@ -13,7 +13,17 @@ const ProductPrice: React.FC<ProductPriceProps> = ({
     discPrice,
     discount,
 }) => {
-    return (
+    if(discPrice==0){
+        return(
+            <div className="flex items-center gap-4 mb-4">
+            <p className="text-purple-600 text-2xl font-bold">
+                Rp {originalPrice.toLocaleString("id-ID")}
+            </p>
+            
+        </div>
+        )
+    } else {
+return (
         <div className="flex items-center gap-4 mb-4">
             <p className="text-purple-600 text-2xl font-bold">
                 Rp {discPrice.toLocaleString("id-ID")}
@@ -26,6 +36,9 @@ const ProductPrice: React.FC<ProductPriceProps> = ({
             </p>
         </div>
     );
+    }
+
+    
 };
 
 export default ProductPrice;
