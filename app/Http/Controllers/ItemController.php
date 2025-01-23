@@ -13,7 +13,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::with(['category', 'user'])->get();
+        $items = Item::with(['category', 'user', 'images'])->get();
         return response()->json($items);
     }
 
