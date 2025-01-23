@@ -12,16 +12,18 @@ const ProductOther: React.FC = () => {
             try {
                 const response = await fetch("http://127.0.0.1:8000/api/get/items");
                 const data = await response.json();
-                setProducts(data); // Pastikan API mengembalikan array
+                console.log("Fetched products:", data); // Debug log
+                setProducts(data);
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {
                 setLoading(false);
             }
         };
-
+    
         fetchProducts();
     }, []);
+    
 
     const handleNext = () => {
         if (startIndex + itemsToShow < products.length) {

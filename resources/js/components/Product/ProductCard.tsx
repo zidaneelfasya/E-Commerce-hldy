@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ProductCardProps {
-    image_path: string;
+    image_path: string; // Single image URL
     name: string;
     oldPrice: string;
     newPrice: string;

@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 interface ProductListProps {
     products: {
         id: number;
-        image_path: string;
+        images: { image_path: string }[]; // List of image URLs
         name: string;
         oldPrice: string;
         newPrice: string;
@@ -17,7 +17,11 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
             {products.map((product) => (
                 <ProductCard
                     key={product.id}
-                    image={product.image_path}
+                    image_path={
+                        Array.isArray(product.images) && product.images.length > 0
+                            ? product.images[0].image_path
+                            : "" // Fallback jika images tidak ada
+                    }
                     name={product.name}
                     oldPrice={product.oldPrice}
                     newPrice={product.newPrice}
@@ -26,5 +30,6 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
         </div>
     );
 };
+
 
 export default ProductList;
