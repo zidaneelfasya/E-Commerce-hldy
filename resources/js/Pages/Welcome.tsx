@@ -8,6 +8,8 @@ import { ComboboxDemo } from "@/components/ComboboxDemo";
 import { Search } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import AccordionDemo from "@/components/accordion";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const categories = [
     { value: "electronics", label: "Electronics" },
@@ -26,40 +28,8 @@ const Welcome = () => {
 
     return (
         <div>
-            {/* Header */}
-            <header className="bg-purple-800 text-white py-4 fixed top-0 w-full z-10">
-                <div className="container mx-auto flex justify-between items-center">
-                    <div className="text-lg font-bold">hldy</div>
-                    <nav className="flex space-x-4">
-                        <a href="#" className="hover:underline">
-                            Home
-                        </a>
-                        <a href="#" className="hover:underline">
-                            Shop
-                        </a>
-                        <a href="#" className="hover:underline">
-                            Cart
-                        </a>
-                        <a href="#" className="hover:underline">
-                            Contact
-                        </a>
-                    </nav>
-                    <div className="flex w-full max-w-lg items-center space-x-2">
-                        <Input
-                            type="email"
-                            className="border p-2 w-3/4 bg-white"
-                            placeholder="Cari Produk"
-                        />
-                        <Button type="submit" className="w-1/4" variant="ghost">
-                            <Search />
-                        </Button>
-                    </div>
-                    <div className="flex space-x-4 mt-4">
-                        <Button variant="ghost">Login</Button>
-                        <Button variant="ghost">Register</Button>
-                    </div>
-                </div>
-            </header>
+            
+            <Header />
 
             {/* Hero Section */}
             <section className="bg-gray-100 text-center py-16">
@@ -181,140 +151,8 @@ const Welcome = () => {
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="footer bg-purple-800 text-white py-6">
-                <div className="container mx-auto">
-                    <div className="footer-top flex justify-between items-start space-x-8">
-                        {/* Footer Brand */}
-                        <div className="footer-brand flex flex-col items-start">
-                            <a href="#" className="logo">
-                                <img
-                                    src="logo.png"
-                                    alt="logo"
-                                    className="w-1/2"
-                                />
-                            </a>
-                            <p className="footer-text mt-4">
-                                ZidunMerce is a platform that provides a variety
-                                of products
-                            </p>
-                        </div>
-
-                        {/* Company Links */}
-                        <ul className="footer-list space-y-2">
-                            <li>
-                                <p className="footer-list-title font-bold">
-                                    Company
-                                </p>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    About us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Pricing plans
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Contacts
-                                </a>
-                            </li>
-                        </ul>
-
-                        {/* Support Links */}
-                        <ul className="footer-list space-y-2">
-                            <li>
-                                <p className="footer-list-title font-bold">
-                                    Support
-                                </p>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Help center
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Ask a question
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Privacy policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Terms & conditions
-                                </a>
-                            </li>
-                        </ul>
-
-                        {/* Neighborhoods Links */}
-                        <ul className="footer-list space-y-2">
-                            <li>
-                                <p className="footer-list-title font-bold">
-                                    Neighborhoods in New York
-                                </p>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Manhattan
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Central New York City
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Upper East Side
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Queens
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Theater District
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Midtown
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    SoHo
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Chelsea
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Footer Bottom */}
-                    <div className="footer-bottom text-center mt-8">
-                        <p className="copyright text-sm">
-                            &copy; 2024{" "}
-                            <a href="#" className="footer-link">
-                                Green Loop
-                            </a>
-                            . All Rights Reserved
-                        </p>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
+            
         </div>
     );
 };
