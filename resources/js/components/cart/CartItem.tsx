@@ -7,7 +7,7 @@ interface CartItemProps {
     price: number;
     quantity: number;
     onQuantityChange: (id: number, newQuantity: number) => void;
-    images: string[]; // Gambar produk
+    images: string[]; 
 }
 
 const CartItem: React.FC<CartItemProps> = ({
