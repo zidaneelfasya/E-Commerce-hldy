@@ -63,4 +63,8 @@ Route::get('/product/2', function () {
     return Inertia::render('ProductPage');
 });
 
+Route::get('/cart', function () {
+    return Inertia::render('cart');
+});
+
 require __DIR__ . '/auth.php';

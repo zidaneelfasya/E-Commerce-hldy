@@ -9,6 +9,8 @@ import { Search } from "lucide-react";
 import ProductCard from "@/components/ProductCard";
 import AccordionDemo from "@/components/accordion";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
 
 const categories = [
     { value: "electronics", label: "Electronics" },
@@ -27,7 +29,6 @@ const Welcome = () => {
 
     return (
         <div>
-            {/* Header */}
             <Header />
             {/* Hero Section */}
             <section className="bg-gray-100 text-center py-16">
@@ -149,140 +150,8 @@ const Welcome = () => {
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="footer bg-purple-800 text-white py-6">
-                <div className="container mx-auto">
-                    <div className="footer-top flex justify-between items-start space-x-8">
-                        {/* Footer Brand */}
-                        <div className="footer-brand flex flex-col items-start">
-                            <a href="#" className="logo">
-                                <img
-                                    src="logo.png"
-                                    alt="logo"
-                                    className="w-1/2"
-                                />
-                            </a>
-                            <p className="footer-text mt-4">
-                                ZidunMerce is a platform that provides a variety
-                                of products
-                            </p>
-                        </div>
-
-                        {/* Company Links */}
-                        <ul className="footer-list space-y-2">
-                            <li>
-                                <p className="footer-list-title font-bold">
-                                    Company
-                                </p>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    About us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Pricing plans
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Contacts
-                                </a>
-                            </li>
-                        </ul>
-
-                        {/* Support Links */}
-                        <ul className="footer-list space-y-2">
-                            <li>
-                                <p className="footer-list-title font-bold">
-                                    Support
-                                </p>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Help center
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Ask a question
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Privacy policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Terms & conditions
-                                </a>
-                            </li>
-                        </ul>
-
-                        {/* Neighborhoods Links */}
-                        <ul className="footer-list space-y-2">
-                            <li>
-                                <p className="footer-list-title font-bold">
-                                    Neighborhoods in New York
-                                </p>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Manhattan
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Central New York City
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Upper East Side
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Queens
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Theater District
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Midtown
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    SoHo
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="footer-link">
-                                    Chelsea
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Footer Bottom */}
-                    <div className="footer-bottom text-center mt-8">
-                        <p className="copyright text-sm">
-                            &copy; 2024{" "}
-                            <a href="#" className="footer-link">
-                                Green Loop
-                            </a>
-                            . All Rights Reserved
-                        </p>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
+            
         </div>
     );
 };
