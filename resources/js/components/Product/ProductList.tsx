@@ -6,8 +6,8 @@ interface ProductListProps {
         id: number;
         images: { image_path: string }[]; // List of image URLs
         name: string;
-        oldPrice: string;
-        newPrice: string;
+        price: number;
+        disc_price: number;
     }[];
 }
 
@@ -23,8 +23,8 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
                             : "" // Fallback jika images tidak ada
                     }
                     name={product.name}
-                    oldPrice={product.oldPrice}
-                    newPrice={product.newPrice}
+                    oldPrice={product.price}
+                    newPrice={product.disc_price}
                 />
             ))}
         </div>

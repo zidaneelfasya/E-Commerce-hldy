@@ -17,7 +17,8 @@ const Header: React.FC = () => {
                 <div className="flex items-center">
                     <MenuButton isOpen={menuOpen} onClick={toggleMenu} />
                     <div className="text-3xl font-extrabold font-serif ml-4">
-                        hldy
+                        
+                        <a href="/">hldy</a>
                     </div>
                 </div>
 

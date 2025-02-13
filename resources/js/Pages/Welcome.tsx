@@ -11,6 +11,7 @@ import AccordionDemo from "@/components/accordion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+
 const categories = [
     { value: "electronics", label: "Electronics" },
     { value: "fashion", label: "Fashion" },
@@ -28,9 +29,7 @@ const Welcome = () => {
 
     return (
         <div>
-            
             <Header />
-
             {/* Hero Section */}
             <section className="bg-gray-100 text-center py-16">
                 <div className="slider">
